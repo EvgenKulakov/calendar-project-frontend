@@ -3,9 +3,11 @@
     <div>
       {{ day.day }}
     </div>
-    <div v-for="project in day.projects" :key="project.id">
+    <div v-for="project in day.projects" :key="project.id" class="project-button">
       <div :class="project.status">
-        Project: {{ project.name }}
+        <div class="name">
+          {{ project.name }}
+        </div>
       </div>
     </div>
   </div>
@@ -19,6 +21,13 @@ export default {
       required: true
     },
   },
+  methods: {
+    getFormatDate(srcDate) {
+      const [year, month, day] = srcDate.split("-");
+      const formattedDate = `${day}-${month}-${year}`;
+      return formattedDate
+    }
+  }
 };
 </script>
 
@@ -26,10 +35,40 @@ export default {
 .project-component {
   text-align: center;
 }
-.CREATED {
+.project-button {
+  font-size: 0.8rem;
+  margin-top: 0.4rem;
 
 }
+
+.name:hover {
+  border-color: antiquewhite;
+  border-radius: 0.4rem;
+  outline-style: double;
+}
+
+.name:active {
+  background-color: slategrey;
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.name {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0.1rem;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+.CREATED {
+  background-color: bisque;
+  border-radius: 0.4rem;
+}
 .IN_PROGRESS {
+
+}
+
+.EXPIRED {
 
 }
 .FINISH {

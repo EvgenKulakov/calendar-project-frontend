@@ -1,4 +1,5 @@
 <template>
+  <h3 class="title">Календарь проектов</h3>
   <div class="calendar">
     <div class="week" v-for="week in weeks" :key="week">
       <div class="day" v-for="day in week" :key="day">
@@ -99,17 +100,26 @@ export default {
 </script>
 
 <style scoped>
+.title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
 .calendar {
   display: flex;
   flex-direction: column;
+  border: 1px solid #ccc;
+  padding: 1px;
 }
 .week {
   display: flex;
 }
 .day {
-  flex: 1;
+  margin: 1px;
+  //flex: 1;
   border: 1px solid #ccc;
   padding: 20px;
   box-sizing: border-box;
+  width: 11.18rem;
+  height: 11rem;
 }
 </style>
