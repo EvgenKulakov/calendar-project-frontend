@@ -7,7 +7,7 @@ import { RouterLink, RouterView } from 'vue-router'
     <div>
       <nav>
         <RouterLink to="/">
-<!--          <h4>Project Calendar</h4>-->
+          <h4>Project Calendar</h4>
         </RouterLink>
       </nav>
     </div>
@@ -17,5 +17,8 @@ import { RouterLink, RouterView } from 'vue-router'
 </template>
 
 <style scoped>
-
+  h4 {
+    color: black;
+    text-decoration-line: underline;
+  }
 </style>

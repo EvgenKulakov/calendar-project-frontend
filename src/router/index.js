@@ -11,9 +11,10 @@ const router = createRouter({
       component: ProjectCalendar
     },
     {
-      path: '/project',
+      path: '/project/:id',
       name: 'project',
-      component: () => import('@/views/Project.vue')
+      component: () => import('@/views/Project.vue'),
+      props: true
     },
     {
       path: '/stage',
