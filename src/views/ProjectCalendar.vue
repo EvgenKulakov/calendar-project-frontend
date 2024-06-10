@@ -1,5 +1,9 @@
 <template>
-  <h3 class="title">Календарь проектов</h3>
+  <div class="title-calendar">
+    <span class="title">Календарь проектов</span>
+    <button class="btn btn-outline-primary" @click="newProject()">+ Добавить</button>
+  </div>
+  <p class="text-center">{{getMonthName()}}</p>
   <div class="calendar">
     <div class="week" v-for="week in weeks" :key="week">
       <div class="day" v-for="day in week" :key="day">
@@ -94,15 +98,28 @@ export default {
       while (days.length) {
         this.weeks.push(days.splice(0, 7));
       }
+    },
+    newProject() {
+      this.$router.push({ name: `new-project` })
+    },
+    getMonthName() {
+      const monthName = this.workingDate.toLocaleString('ru-RU', { month: 'long' })
+      return monthName.toUpperCase()
     }
   }
 };
 </script>
 
 <style scoped>
+.title-calendar {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .title {
-  text-align: center;
-  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  padding: 1rem ;
 }
 .calendar {
   display: flex;

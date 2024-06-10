@@ -14,7 +14,12 @@ const router = createRouter({
       path: '/project/:id',
       name: 'project',
       component: () => import('@/views/Project.vue'),
-      props: true
+      props: route => ({ id: route.params.id, created: route.query.created === 'true' })
+    },
+    {
+      path: '/new-project',
+      name: 'new-project',
+      component: () => import('@/views/NewProject.vue'),
     },
     {
       path: '/stage',

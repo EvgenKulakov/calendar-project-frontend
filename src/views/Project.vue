@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>Project Details</h1>
+    <p v-if="created" class="text-success">Проект сохранён</p>
+    <h3>Информация о проекте</h3>
     <div>
       <span>Название: </span>
       <span>{{project.name}}</span>
@@ -17,12 +18,12 @@
       <span>Выполнить до: </span>
       <span>{{project.deadline}}</span>
     </div>
-    <div>
+    <div v-if="project.estimatedHours">
       <span>Потребуется часов для выполнения: </span>
       <span>{{project.estimatedHours}}</span>
     </div>
     <div class="mt-3" v-if="project.currentStage">
-      <p>Текущая стадия: </p>
+      <p>Текущий этап: </p>
       <div>
         <span>Название: </span>
         <span>{{project.currentStage.name}}</span>
@@ -40,30 +41,28 @@
         <span>{{project.currentStage.deadline}}</span>
       </div>
     </div>
-    <div class="mt-3" v-if="project.stages && project.stages.length > 1">
-      <p>Другие стадии проекта: </p>
-      <div v-for="stage in project.stages" :key="stage.id">
-        <div v-if="project.currentStage.id != stage.id">
-          <div>
-            <span>Название: </span>
-            <span>{{stage.name}}</span>
-          </div>
-          <div>
-            <span>Описание: </span>
-            <span>{{stage.description}}</span>
-          </div>
-          <div>
-            <span>Дата старта: </span>
-            <span>{{stage.startDate}}</span>
-          </div>
-          <div>
-            <span>Выполнить до: </span>
-            <span>{{stage.deadline}}</span>
-          </div>
+    <div class="mt-3" v-if="project.otherStages && project.otherStages.length > 0">
+      <p>Другие этапы проекта: </p>
+      <div v-for="stage in project.otherStages" :key="stage.id">
+        <div>
+          <span>Название: </span>
+          <span>{{stage.name}}</span>
+        </div>
+        <div>
+          <span>Описание: </span>
+          <span>{{stage.description}}</span>
+        </div>
+        <div>
+          <span>Дата старта: </span>
+          <span>{{stage.startDate}}</span>
+        </div>
+        <div>
+          <span>Выполнить до: </span>
+          <span>{{stage.deadline}}</span>
         </div>
       </div>
     </div>
-    <div class="mt-3" v-if="project.employees">
+    <div class="mt-3" v-if="project.employees && project.employees.length > 0">
       <p>Сотрудники на проекте: </p>
       <div v-for="employee in project.employees" :key="employee.id">
         <div>
@@ -87,6 +86,10 @@ export default {
     id: {
       type: String,
       required: true
+    },
+    created: {
+      type: Boolean,
+      required: false
     }
   },
   data() {
