@@ -1,4 +1,4 @@
-FROM node:16 AS build-stage
+FROM node:16 as build-stage
 
 WORKDIR /app
 
@@ -10,14 +10,12 @@ COPY . .
 
 RUN npm run build
 
-FROM node:16-alpine AS production-stage
+FROM nginx:stable-alpine as production-stage
 
-RUN npm install -g http-server
+COPY --from=build-stage /app/dist /usr/share/nginx/html
 
-WORKDIR /app
+COPY nginx.conf /etc/nginx/nginx.conf
 
-COPY --from=build-stage /app/dist /app
+EXPOSE 2000
 
-EXPOSE 5173
-
-CMD ["http-server", "-p", "5173"]
+CMD ["nginx", "-g", "daemon off;"]

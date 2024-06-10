@@ -155,7 +155,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '@/services/axiosConfig';
 
 export default {
   props: {
@@ -190,7 +190,7 @@ export default {
   methods: {
     async setProjectData(projectId) {
       try {
-        const response = await axios.get(`http://localhost:8080/api/projects/${projectId}`)
+        const response = await axios.get(`/projects/${projectId}`)
 
         this.project = response.data
 
@@ -205,7 +205,7 @@ export default {
       }
 
       try {
-        const response = await axios.post('http://localhost:8080/api/tasks', this.task);
+        const response = await axios.post('/tasks', this.task);
 
         await this.setProjectData(this.project.id)
 

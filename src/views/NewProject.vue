@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '@/services/axiosConfig';
 
 export default {
   data() {
@@ -111,7 +111,7 @@ export default {
   methods: {
     async onSubmit() {
       try {
-        const response = await axios.post('http://localhost:8080/api/projects', this.project);
+        const response = await axios.post('/projects', this.project);
 
         this.$router.push({ path: `project/${response.data.id}`, query: { created: true }})
 

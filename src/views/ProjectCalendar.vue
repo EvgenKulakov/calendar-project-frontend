@@ -15,7 +15,7 @@
 
 <script>
 import ProjectComponent from '@/components/ProjectComponent.vue';
-import axios from 'axios';
+import axios from '@/services/axiosConfig';
 
 export default {
   components: {
@@ -64,7 +64,7 @@ export default {
       let month = this.workingDate.getMonth();
 
       try {
-        const response = await axios.get('http://localhost:8080/api/projects/month', {
+        const response = await axios.get('/projects/month', {
           params: {
             year: year,
             month: month + 1
