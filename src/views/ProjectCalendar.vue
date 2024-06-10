@@ -124,11 +124,12 @@ export default {
 .calendar {
   display: flex;
   flex-direction: column;
-  border: 1px solid #ccc;
+  //border: 1px solid #ccc;
   padding: 1px;
 }
 .week {
-  display: flex;
+  //display: flex;
+  display: -webkit-box;
 }
 .day {
   margin: 1px;
@@ -136,7 +137,7 @@ export default {
   border: 1px solid #ccc;
   padding: 20px;
   box-sizing: border-box;
-  width: 11.18rem;
-  height: 11rem;
+  width: 14.28%;
+  height: 10rem;
 }
 </style>

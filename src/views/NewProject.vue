@@ -1,6 +1,6 @@
 
 <template>
-  <form class="container" @submit.prevent="onSubmit">
+  <form class="container main-form" @submit.prevent="onSubmit">
     <div class="form-item">
       <label class="form-label" for="name">Название: </label>
       <input class="form-control" required maxlength="255" type="text" v-model="project.name" id="name">
@@ -30,12 +30,12 @@
         <span>Добавлено этапов: {{countStage}}</span>
       </div>
     </div>
-    <div class="form-item form-small">
-      <label class="form-label" for="employees">Добавить сотрудников: </label>
-      <div class="custom-button" id="employees">
-        <img src="/plus.svg" width="24" height="24">
-      </div>
-    </div>
+<!--    <div class="form-item form-small">-->
+<!--      <label class="form-label" for="employees">Добавить сотрудников: </label>-->
+<!--      <div class="custom-button" id="employees">-->
+<!--        <img src="/plus.svg" width="24" height="24">-->
+<!--      </div>-->
+<!--    </div>-->
     <button class="mt-3 btn btn-primary" type="submit">Сохранить</button>
   </form>
 
@@ -155,13 +155,14 @@ export default {
         tasks: [],
         isDeleted: false
       }
+      this.currentStageCheckbox = false
     }
   }
 }
 </script>
 
 <style scoped>
-.container {
+.main-form {
   width: 50rem;
 }
 .form-item {
